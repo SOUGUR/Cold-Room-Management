@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Upcoming Expiries</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Materials Expiring in Next Month</h2>
+        <a href="{% url 'list_materials' %}" class="btn btn-secondary mb-3">Back to List</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Quantity</th>
+                    <th>Expiry Date</th>
+                    <th>Received Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in expiring_soon %}
+                <tr>
+                    <td>{{ material.name }}</td>
+                    <td>{{ material.quantity }}</td>
+                    <td>{{ material.expiry_date }}</td>
+                    <td>{{ material.received_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No materials expiring soon</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
